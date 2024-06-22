@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+  <script src="../../js/color-modes.js"></script>
+  <link rel="stylesheet" href="../../bootstrap-icons-1.10.5/font/bootstrap-icons.min.css" />
+  <link rel="shortcut icon" href="../../img/ali.png" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="" />
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
+  <meta name="generator" content="Hugo 0.112.5" />
+  <title>Edit <%= customer.firstName %></title>
+
+  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/dark-light.css">
+  <link href="../../css/sidebars.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/myStyle.css" />
+</head>
+
+<body>
+  <%- include('../Components/dark-light.ejs') %>
+
+  <main class="d-flex flex-nowrap">
+    <%- include('../Components/sidebar.ejs', {currentPage: "edit" }) %>
+
+    <section class="w-100">
+      <%- include('../Components/navbar.ejs') %>
+
+      <nav class="px-2 mt-4 d-flex flex-wrap justify-content-between" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><%= customer.firstName %> <%= customer.lastName %></li>
+        </ol>
+        <p class="me-md-5"><span class="fw-medium fs-6">Id :</span> <%= customer._id %></p>
+      </nav>
+
+      <form action="/customer/edit/<%= customer._id %>" method="post" class="mx-0 row gx-3 gy-4 mt-2">
+        <div class="col-md-6">
+          <label for="inputfirstName4" class="form-label">First Name:</label>
+          <input name="firstName" type="text" class="form-control" id="inputfirstName4" value="<%= customer.firstName %>" placeholder="Your First Name" required />
+        </div>
+        <div class="col-md-6">
+          <label for="inputlastName4" class="form-label">Last Name:</label>
+          <input name="lastName" type="text" class="form-control" id="inputlastName4" value="<%= customer.lastName %>" placeholder="Your Last Name" required />
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputemail4" class="form-label">Email:</label>
+          <input name="email" type="email" class="form-control" id="inputemail4" value="<%= customer.email ? customer.email : "" %>" placeholder="<%= customer.email ? customer.email : "Not Insearted" %>" required />
+        </div>
+        <div class="col-md-6">
+          <label for="inputtele4" class="form-label">Phone Number:</label>
+          <input name="phoneNumber" type="number" class="form-control" id="inputtele4" value="<%= customer.phoneNumber ? customer.phoneNumber : "" %>" placeholder="<%= customer.phoneNumber ? customer.phoneNumber : "Not Insearted" %>"/>
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputage4" class="form-label">Age:</label>
+          <input name="age" type="number" class="form-control" id="inputage4" value="<%= customer.age %>" placeholder="Your Age: ..." required />
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputCountry" class="form-label">Country:</label>
+          <select name="country" id="inputCountry" class="form-select" required>
+            <option selected hidden disabled>Choose here ...</option>
+            <option value="Morocco" <%= customer.country === 'Morocco' ? 'selected' : '' %>>Morocco</option>
+            <option value="Egypt" <%= customer.country === 'Egypt' ? 'selected' : '' %>>Egypt</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputGender" class="form-label">Gender:</label>
+          <select name="gender" id="inputGender" class="form-select" required>
+            <option selected hidden disabled>Choose here ...</option>
+            <option value="male" <%= customer.gender === 'male' ? 'selected' : '' %>>male</option>
+            <option value="female" <%= customer.gender === 'female' ? 'selected' : '' %>>female</option>
+            <option value="other" <%= customer.gender === 'other' ? 'selected' : '' %>>other</option>
+          </select>
+        </div>
+
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Update changes</button>
+          <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn btn-danger">Delete Customer</button>
+        </div>
+      </form>
+    </section>
+
+    <%- include('../Components/deleteForm.ejs') %>
+
+  </main>
+  <script src="../../js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/sidebars.js"></script>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
